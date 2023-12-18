@@ -18,7 +18,7 @@ def generate_launch_description():
         package='joint_state_publisher',
         executable='joint_state_publisher',
         name='joint_state_publisher',
-        condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
+        # condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
     )
     rviz_node = launch_ros.actions.Node(
         package='rviz2',
