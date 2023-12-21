@@ -19,7 +19,7 @@ Table of Content
 1. Launch sam-bot example from this repo
 ```
 git clone
-ros2 launch
+ros2 launch gz_display.launch.py
 ```
 
 
