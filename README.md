@@ -18,8 +18,9 @@ Table of Content
 ## Test Installation
 1. Launch sam-bot example from this repo
 ```
-git clone
-ros2 launch gz_display.launch.py
+git clone https://github.com/petpetpeter/gz_nav2_tutorials.git
+colcon build
+ros2 launch sam_bot_description gz_display.launch.py
 ```
 
 
