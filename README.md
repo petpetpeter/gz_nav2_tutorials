@@ -13,7 +13,7 @@ Table of Content
 ## Pre-Installation
 1. [ROS2 (humbel)](https://docs.ros.org/en/humble/Installation.html)
 2. [gz_sim](https://gazebosim.org/docs/garden/install_ubuntu)
-3. [ros_gz]([https://gazebosim.org/docs/garden/ros_installation](https://github.com/gazebosim/ros_gz)https://github.com/gazebosim/ros_gz)  (required to install from src)
+3. [ros_gz](https://gazebosim.org/docs/garden/ros_installation](https://github.com/gazebosim/ros_gz)https://github.com/gazebosim/ros_gz)  (required to install from src)
 
 ## Test Installation
 1. Launch sam-bot example from this repo
