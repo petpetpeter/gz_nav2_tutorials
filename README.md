@@ -15,19 +15,34 @@ The structure of the repository follows the flow of integrating robots with NAV2
 4. Navigation2 setup
 5. Writing Navigation2 configuration files and plugins
 
-## Pre-Installation
-1. [ROS2 (humbel)](https://docs.ros.org/en/humble/Installation.html)
-2. [gz_sim](https://gazebosim.org/docs/garden/install_ubuntu)
-3. [ros_gz](https://gazebosim.org/docs/garden/ros_installation](https://github.com/gazebosim/ros_gz)https://github.com/gazebosim/ros_gz)  (required to install from src)
 
-## Test Installation
-1. Launch sam-bot example from this repo
-```
-git clone https://github.com/petpetpeter/gz_nav2_tutorials.git
-colcon build
-ros2 launch sam_bot_description gz_display.launch.py
-```
+### 1. 📑 Setting up the hardware description for *ros2_control*
+##### GOAL
+  - learn how to setup the URDF of a robot using XACRO macros
 
+##### 🗒 Setting up URDF using XACRO for a robot
 
+For any robot that is used with ROS/ROS2 an URDF description is needed.
+This description holds information about kinematics, visualization (e.g., for Rviz2) and collision data.
+This description is also used by popular ROS2 high-level libraries like, MoveIt2, Nav2 and Simulators.
 
+In this excercise we will focus on setting up the description using the XACRO format which is highly configurable and parameterizable and generally better to use than the static URDF format.
+
+##### Task
+
+Branch: `1-robot-description/task`
+
+Task is to create a launch file that will show the robot in `rviz2`
+
+Files to create or adjust:
+  - `launch/rviz2_display.launch.py` - loading and showing robot in `rviz2` using `robot_state_publisher`, `joint_state_publisher_gui` and `rviz2` nodes
+
+References:
+  - Nav2 tutorail: [Sambot description launch file](https://github.com/ros-planning/navigation2_tutorials/blob/master/sam_bot_description/launch/display.launch.py)
+
+Output:
+  - `ros2 launch gz_nav2_tutorials rviz2_display.launch.py`
+  should show the robot in `rviz2`
+
+  
 
