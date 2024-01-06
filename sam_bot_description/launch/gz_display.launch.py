@@ -21,7 +21,6 @@ def generate_launch_description():
         package='joint_state_publisher',
         executable='joint_state_publisher',
         name='joint_state_publisher',
-        # condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
     )
     rviz_node = launch_ros.actions.Node(
         package='rviz2',
@@ -30,12 +29,7 @@ def generate_launch_description():
         output='screen',
         arguments=['-d', LaunchConfiguration('rvizconfig')],
     )
-    # spawn_entity = launch_ros.actions.Node(
-    # 	package='gazebo_ros', 
-    # 	executable='spawn_entity.py',
-    #     arguments=['-entity', 'sam_bot', '-topic', 'robot_description'],
-    #     output='screen'
-    # )
+
     # Gazebo Sim
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
     gazebo = IncludeLaunchDescription(
