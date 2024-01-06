@@ -5,10 +5,15 @@ Welcome to the gz_nav2_tutorials wiki!
 
 The content is mainly imported from [Nav2 tutorial](https://navigation.ros.org/index.html)
 
-Table of Content
-1. ROS2 gazebo ros_gazebo installation
-2. Simple Diff Drive robot with ros2-gazebo
-3. Nav2 implementation on the simulation
+## Structure of this repositor
+The structure of the repository follows the flow of integrating robots with NAV2 and these are the following steps:
+
+1. Setting up the robot's URDF using XACRO
+2. Spawning the robot in Gazebo
+3. Simulating diff drive robot in Gazebo using diff_drive_controller plugin
+4. Publishing gz topic to ROS2 topic via ros_gz_bridge
+4. Navigation2 setup
+5. Writing Navigation2 configuration files and plugins
 
 ## Pre-Installation
 1. [ROS2 (humbel)](https://docs.ros.org/en/humble/Installation.html)
