@@ -44,5 +44,6 @@ Output:
   - `ros2 launch gz_nav2_tutorials rviz2_display.launch.py`
   should show the robot in `rviz2`
 
-  
+  ![task1a](https://github.com/petpetpeter/gz_nav2_tutorials/assets/55285546/44d427a4-c4ba-4023-89fc-f22b75731443)
+
 
