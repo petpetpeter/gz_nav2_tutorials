@@ -1,0 +1,55 @@
+version: "3.8"
+name: gz-simulation
+services:
+  ros2:
+    build:
+      context: ./
+      args:
+        - user_id=1000
+        - ros_ws=/home/dev_ws
+
+    # Enabling GPU access with Compose
+    # https://docs.docker.com/compose/gpu-support/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              # device_ids: ['0']
+              capabilities: [gpu]
+
+    environment:
+      - ROS_DOMAIN_ID=101
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - GZ_VERSION=garden
+      # Set a fancy prompt (See ~/.bashrc in the container)
+      - TERM=xterm-256color
+
+      # WSLg settings
+      # https://www.reddit.com/r/bashonubuntuonwindows/comments/n2nthu/can_i_use_the_new_wslg_with_docker/
+      - DISPLAY=$DISPLAY
+      - WAYLAND_DISPLAY
+      - XDG_RUNTIME_DIR='/tmp/runtime-root'
+      - PULSE_SERVER
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - MAKEFLAGS="-j 4"
+
+    volumes:
+      - ./:/home/project
+      - ../sam_bot_description:/home/dev_ws/src/sam_bot_description
+      - ../ros_gz:home/dev_ws/src/ros_gz
+      - ./.ros:/home/.ros
+      # - ./docker/ros2/.gazebo/:/home/.gazebo
+
+      # WSLg settings
+      # - /mnt/wslg:/mnt/wslg
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/dri:/dev/dri
+      - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
+    
+    # Uncomment the following lines to share ros network with host
+    network_mode: host
+    ipc: host
+
+    # restart: always
