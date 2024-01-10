@@ -61,3 +61,5 @@ References:
 Output:
 - `ros2 launch sam_bot_description gz_display.launch.py`
 should show the robot in `gz_sim` and publish joint states back to `ros2`
+
+![image](https://github.com/petpetpeter/gz_nav2_tutorials/assets/55285546/5e1b640e-a7e9-42fb-8d0e-e95b52d8da00)
