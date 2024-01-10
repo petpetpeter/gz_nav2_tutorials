@@ -17,11 +17,11 @@ def generate_launch_description():
         executable='robot_state_publisher',
         parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')])}]
     )
-    joint_state_publisher_node = launch_ros.actions.Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        name='joint_state_publisher',
-    )
+    # joint_state_publisher_node = launch_ros.actions.Node(
+    #     package='joint_state_publisher',
+    #     executable='joint_state_publisher',
+    #     name='joint_state_publisher',
+    # )
     rviz_node = launch_ros.actions.Node(
         package='rviz2',
         executable='rviz2',
@@ -55,6 +55,22 @@ def generate_launch_description():
          parameters=[os.path.join(pkg_share, 'config/ekf.yaml'), {'use_sim_time': LaunchConfiguration('use_sim_time')}]
     )
 
+    # Gz - ROS Bridge
+    bridge = launch_ros.actions.Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            # Clock (IGN -> ROS2)
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            # Joint states (IGN -> ROS2)
+            '/world/empty/model/my_custom_model/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model',
+        ],
+        remappings=[
+            ('/world/empty/model/my_custom_model/joint_state', 'joint_states'),
+        ],
+        output='screen'
+    )
+
     return launch.LaunchDescription([
         launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
                                             description='Flag to enable joint_state_publisher_gui'),
@@ -65,10 +81,11 @@ def generate_launch_description():
         launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
                                             description='Flag to enable use_sim_time'),
         launch.actions.ExecuteProcess(cmd=["ls"], output='screen'),
-        joint_state_publisher_node,
+        # joint_state_publisher_node,
         robot_state_publisher_node,
         gazebo,
         spawn,
         robot_localization_node,
-        rviz_node
+        rviz_node,
+        bridge
     ])

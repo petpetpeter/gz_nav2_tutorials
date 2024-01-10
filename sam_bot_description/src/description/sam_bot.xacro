@@ -129,6 +129,11 @@
     <origin xyz="${caster_xoff} 0.0 ${-(base_height/2)}" rpy="0 0 0"/>
   </joint>
 
+  <!-- Joint states plugin -->
+  <gazebo>
+    <plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher"/>
+  </gazebo>
+
   <!-- Sensor -->
   <xacro:include filename="$(find sam_bot_description)/src/description/sensors.xacro"/>
   <joint name="imu_joint" type="fixed">
