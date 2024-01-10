@@ -38,37 +38,15 @@ def generate_launch_description():
         launch_arguments={'gz_args': '-r empty.sdf'}.items(),
     )
     # Spawn
-    spawn = launch_ros.actions.Node(package='ros_gz_sim', executable='create',
-                 arguments=[
-                    '-name', 'my_custom_model',
-                    '-x', '1.2',
-                    '-z', '2.3',
-                    '-Y', '3.4',
-                    '-topic', '/robot_description'],
-                 output='screen')
-
-    robot_localization_node = launch_ros.actions.Node(
-         package='robot_localization',
-         executable='ekf_node',
-         name='ekf_filter_node',
-         output='screen',
-         parameters=[os.path.join(pkg_share, 'config/ekf.yaml'), {'use_sim_time': LaunchConfiguration('use_sim_time')}]
+    spawn = launch_ros.actions.Node(
+        ### Add your code here ###
+        output='screen'
     )
 
     # Gz - ROS Bridge
     bridge = launch_ros.actions.Node(
-        package='ros_gz_bridge',
-        executable='parameter_bridge',
-        arguments=[
-            # Clock (IGN -> ROS2)
-            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
-            # Joint states (IGN -> ROS2)
-            '/world/empty/model/my_custom_model/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model',
-        ],
-        remappings=[
-            ('/world/empty/model/my_custom_model/joint_state', 'joint_states'),
-        ],
-        output='screen'
+        ### Add your code here ###
+        ### bridge gz clock and joint states ###
     )
 
     return launch.LaunchDescription([
@@ -85,7 +63,6 @@ def generate_launch_description():
         robot_state_publisher_node,
         gazebo,
         spawn,
-        robot_localization_node,
         rviz_node,
         bridge
     ])

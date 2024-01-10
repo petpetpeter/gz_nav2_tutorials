@@ -131,7 +131,9 @@
 
   <!-- Joint states plugin -->
   <gazebo>
-    <plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher"/>
+    <!-- Add joint state plugin here-->
+
+    <!-- Add joint state plugin here-->
   </gazebo>
 
   <!-- Sensor -->
